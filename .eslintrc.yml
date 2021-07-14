@@ -1,0 +1,40 @@
+env:
+  browser: true
+  es2021: true
+  jest: true
+extends:
+  - "eslint:recommended"
+  - "prettier"
+  - "plugin:prettier/recommended"
+  - "plugin:react/recommended"
+parser: "@typescript-eslint/parser"
+parserOptions:
+  ecmaFeatures:
+    jsx: true
+  ecmaVersion: 12
+  sourceType: module
+plugins:
+  - react
+  - "@typescript-eslint"
+  - "prettier"
+  - "react-hooks"
+rules:
+  {
+    "no-use-before-define": 0,
+    "@typescript-eslint/no-use-before-define": ["error"],
+    no-unused-vars: [1, { "caughtErrors": "none" }],
+    "prettier/prettier": ["error", { "endOfLine": "auto" }],
+  }
+overrides:
+  - {
+      files: ["**/*.test.ts", "**/*.test.ts"],
+      env: { es6: true, node: true, jest: true, jest/globals: true },
+      extends: ["plugin:jest/recommended"],
+      rules:
+        {
+          "no-usused-expressions": 0,
+          "no-unused-before-define": ["error", { functions: false }],
+          "no-console": 0,
+        },
+      plugins: [jest],
+    }
